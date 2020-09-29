@@ -11,7 +11,7 @@ class PostComments extends React.Component {
   }
 
   onSubmit(event) {
-    // event.preventDefault();
+    event.preventDefault();
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

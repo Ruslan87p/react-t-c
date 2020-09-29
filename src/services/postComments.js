@@ -49,8 +49,8 @@ class PostComments extends React.Component {
                     </span>
                   </div>
                   <input
-                    id="username"
-                    name="username"
+                    id="title"
+                    name="title"
                     type="text"
                     className="form-control"
                     value={this.state.name}

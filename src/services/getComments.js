@@ -15,13 +15,13 @@ class GetComments extends React.Component {
     // this.showMoreItems = this.showMoreItems.bind(this);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
           user: data,
-          loading: true,
+          loading: false,
           showItems: 20,
         });
       });
@@ -40,24 +40,39 @@ class GetComments extends React.Component {
       <div>
         <div className="container">
           <div className="row">
-            <div className="col-lg-12">
-              {this.state.user
-                .slice(0, this.state.showItems)
-                .map((item, index) => {
-                  return (
-                    <div className="post" key={item.id}>
-                      <div className="d-flex flex-column justify-content-between">
-                        <small className="id">Post Id {index + 1}</small>
-                        <div className="">
-                          <h5>{item.name}</h5>
-                          <p>{item.body}</p>
-                          <small>{item.email}</small>
+            {this.state.loading || !this.state.user[0].body ? (
+              <div>
+                <div className="loading">
+                  <span className="dot"></span>
+                  <div className="dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div>
+                <div className="col-lg-12">
+                  {this.state.user
+                    .slice(0, this.state.showItems)
+                    .map((item, index) => {
+                      return (
+                        <div className="post" key={item.id}>
+                          <div className="d-flex flex-column justify-content-between">
+                            <small className="id">Post Id {index + 1}</small>
+                            <div className="">
+                              <h5>{item.name}</h5>
+                              <p>{item.body}</p>
+                              <small>{item.email}</small>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                  );
-                })}
-            </div>
+                      );
+                    })}
+                </div>
+              </div>
+            )}
           </div>
         </div>
 

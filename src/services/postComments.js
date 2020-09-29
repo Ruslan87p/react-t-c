@@ -25,7 +25,7 @@ class PostComments extends React.Component {
     });
   }
 
-  nameChange(e) {
+  titleChange(e) {
     this.setState({ name: e.target.value });
   }
   commentChange(e) {
@@ -54,7 +54,7 @@ class PostComments extends React.Component {
                     type="text"
                     className="form-control"
                     value={this.state.name}
-                    onChange={this.nameChange.bind(this)}
+                    onChange={this.titleChange.bind(this)}
                   />
                 </div>
 
@@ -74,7 +74,10 @@ class PostComments extends React.Component {
                   />
                 </div>
 
-                <button className="btn-custom mt-3" type="submit">
+                <button
+                  className="btn-custom mt-3"
+                  disabled={!this.state.post}
+                  type="submit">
                   Add comment
                 </button>
               </form>

@@ -31,6 +31,12 @@
   line-height: 80%;
 }
 
+button:disabled,
+button[disabled] {
+  background-color: rgb(255, 183, 170);
+  color: white;
+}
+
 .loading {
   position: absolute;
   top: 50%;

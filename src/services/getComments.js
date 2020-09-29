@@ -8,8 +8,8 @@ class GetComments extends React.Component {
 
     this.state = {
       loading: true,
-      user: [],
-      showItems: 20,
+      postData: [],
+      showPosts: 20,
     };
   }
 
@@ -18,12 +18,15 @@ class GetComments extends React.Component {
       .then((res) => res.json())
       .then((data) => {
         this.setState({
-          user: data,
+          postData: data,
           loading: false,
-          showItems: 20,
+          showPosts: 20,
         });
       })
-      .catch((error) => this.setState({ error, loading: false }));
+      .catch((error) => {
+        console.log(error);
+        this.setState({ loading: false });
+      });
   }
 
   componentDidMount() {
@@ -32,9 +35,8 @@ class GetComments extends React.Component {
 
   showMoreItems() {
     this.setState((prev) => {
-      console.log(prev);
       return {
-        showItems: prev.showItems + 20,
+        showPosts: prev.showPosts + 20,
       };
     });
   }
@@ -44,7 +46,7 @@ class GetComments extends React.Component {
       <div>
         <div className="container">
           <div className="row">
-            {this.state.loading || !this.state.user[0].body ? (
+            {this.state.loading || !this.state.postData[0].body ? (
               <div>
                 <div className="loading">
                   <span className="dot"></span>
@@ -58,8 +60,8 @@ class GetComments extends React.Component {
             ) : (
               <div>
                 <div className="col-lg-12">
-                  {this.state.user
-                    .slice(0, this.state.showItems)
+                  {this.state.postData
+                    .slice(0, this.state.showPosts)
                     .map((item, index) => {
                       return (
                         <div className="post" key={item.id}>
@@ -80,7 +82,7 @@ class GetComments extends React.Component {
           </div>
         </div>
 
-        {this.state.showItems < this.state.user.length && (
+        {this.state.showPosts < this.state.postData.length && (
           <div className="container">
             <div className="row">
               <div className="col-sm-12 d-flex justify-content-center align-items-center">

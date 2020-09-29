@@ -11,11 +11,9 @@ class GetComments extends React.Component {
       user: [],
       showItems: 20,
     };
-
-    // this.showMoreItems = this.showMoreItems.bind(this);
   }
 
-  componentDidMount() {
+  fetchComments() {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -24,11 +22,17 @@ class GetComments extends React.Component {
           loading: false,
           showItems: 20,
         });
-      });
+      })
+      .catch((error) => this.setState({ error, loading: false }));
+  }
+
+  componentDidMount() {
+    this.fetchComments();
   }
 
   showMoreItems() {
     this.setState((prev) => {
+      console.log(prev);
       return {
         showItems: prev.showItems + 20,
       };

@@ -38,8 +38,6 @@
   width: 142px;
   height: 40px;
   margin: -20px 0 0 -71px;
-  background: transparent;
-  filter: contrast(20);
 }
 .loading .dot {
   position: absolute;

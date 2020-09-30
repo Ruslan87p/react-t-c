@@ -42,6 +42,13 @@ class GetComments extends React.Component {
     });
   }
 
+  //  Delete method
+  delete(item) {
+    this.setState((prevState) => ({
+      postData: prevState.postData.filter((post) => post.id !== item.id),
+    }));
+  }
+
   render() {
     return (
       <div>
@@ -60,7 +67,7 @@ class GetComments extends React.Component {
               </div>
             ) : (
               <div>
-                <Card data={this.state} />
+                <Card data={this.state} onDelete={this.delete.bind(this)} />
               </div>
             )}
           </div>

@@ -47,7 +47,6 @@ class Form extends React.Component {
               name="title"
               type="text"
               className="form-control"
-              value={this.state.name}
               onChange={this.titleChange.bind(this)}
             />
           </div>
@@ -63,7 +62,6 @@ class Form extends React.Component {
               id="comment"
               name="comment"
               className="form-control"
-              value={this.state.post}
               onChange={this.commentChange.bind(this)}
             />
           </div>

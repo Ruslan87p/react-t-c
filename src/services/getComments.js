@@ -72,7 +72,7 @@ class GetComments extends React.Component {
               <div className="col-sm-12 d-flex justify-content-center align-items-center">
                 <button
                   className="btn-custom mt-4 mb-5"
-                  onClick={() => this.showMoreItems()}>
+                  onClick={this.showMoreItems.bind(this)}>
                   Show more
                 </button>
               </div>
